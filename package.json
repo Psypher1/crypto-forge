@@ -12,14 +12,15 @@
   "dependencies": {
     "@nuxt/image": "2.0.0",
     "@nuxt/ui": "4.2.1",
-    "@tailwindcss/vite": "^4.1.18",
-    "nuxt": "^4.2.2",
-    "tailwindcss": "^4.1.18",
+    "@tailwindcss/vite": "^4.1.16",
+    "nuxt": "4.2.1",
+    "tailwindcss": "4.1.16",
     "typescript": "^5.9.3",
-    "vue": "^3.5.25",
-    "vue-router": "^4.6.4"
+    "vue": "3.5.22",
+    "vue-router": "4.6.3"
   },
   "devDependencies": {
+    "@iconify-json/lucide": "^1.2.81",
     "prettier": "3.7.4",
     "prettier-plugin-tailwindcss": "^0.7.2"
   }

@@ -70,12 +70,14 @@ onMounted(async () => {
         <div>
             <label> Sort: </label>
             <USelectMenu v-model="sortBy" :items="sortOptions" size="xl" class="w-64">
-                <!-- <template #default="{ item }">
-                    <span class="w-full">
-                        {{ sortLabels[item] }}
-                    </span>
+                <template #default="{ modelValue, open }">
+                    {{ sortLabels[modelValue] }}
                 </template>
-                <template #selected="{ value }">
+
+                <template #item="{ item }">
+                    {{ sortLabels[item] }}
+                </template>
+                <!-- <template #item="{ value }">
                     {{ sortLabels[value] }}
                 </template> -->
             </USelectMenu>
@@ -87,41 +89,42 @@ onMounted(async () => {
     </div>
 
     <div v-else class="mt-4 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        <UCard v-for="coin in filteredCoins" :key="coin.id">
-            <!-- Header -->
-            <template #header>
-                <div class="flex items-center gap-2">
-                    <img :src="coin.image" :alt="coin.name" class="h-6 w-6" />
-                    <div>
-                        <h3 class="text-xl leading-tight font-semibold">
-                            {{ coin.name }}
-                        </h3>
-                        <span class="text-xs text-gray-500 uppercase">
-                            {{ coin.symbol }}
-                        </span>
+        <NuxtLink v-for="coin in filteredCoins" :key="coin.id" :to="`/coin/${coin.id}`">
+            <UCard>
+                <!-- Header -->
+                <template #header>
+                    <div class="flex items-center gap-2">
+                        <img :src="coin.image" :alt="coin.name" class="h-6 w-6" />
+                        <div>
+                            <h3 class="text-xl leading-tight font-semibold">
+                                {{ coin.name }}
+                            </h3>
+                            <span class="text-xs text-gray-500 uppercase">
+                                {{ coin.symbol }}
+                            </span>
+                        </div>
                     </div>
+                </template>
+                <!-- Body -->
+                <div class="space-y-1">
+                    <p>
+                        <span class="font-medium">Price:</span>
+                        ${{ coin.current_price.toLocaleString() }}
+                    </p>
+                    <p
+                        :class="
+                            coin.price_change_percentage_24h >= 0
+                                ? 'text-green-600'
+                                : 'text-red-600'
+                        "
+                    >
+                        {{ coin.price_change_percentage_24h.toFixed(2) }}%
+                    </p>
+                    <p class="text-sm text-gray-400">
+                        Market Cap: ${{ coin.market_cap.toLocaleString() }}
+                    </p>
                 </div>
-            </template>
-
-            <!-- Body -->
-            <div class="space-y-1">
-                <p>
-                    <span class="font-medium">Price:</span>
-                    ${{ coin.current_price.toLocaleString() }}
-                </p>
-
-                <p
-                    :class="
-                        coin.price_change_percentage_24h >= 0 ? 'text-green-600' : 'text-red-600'
-                    "
-                >
-                    {{ coin.price_change_percentage_24h.toFixed(2) }}%
-                </p>
-
-                <p class="text-sm text-gray-400">
-                    Market Cap: ${{ coin.market_cap.toLocaleString() }}
-                </p>
-            </div>
-        </UCard>
+            </UCard>
+        </NuxtLink>
     </div>
 </template>

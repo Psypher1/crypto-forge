@@ -3,7 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
     compatibilityDate: "2025-07-15",
     devtools: { enabled: false },
-    modules: ["@nuxt/image", "@nuxt/ui"],
+    modules: ["@nuxt/image", "@nuxt/ui", "nuxt-echarts"],
     runtimeConfig: {
         public: {
             coinsApiUrl: process.env.COINS_API_URL,
@@ -32,5 +32,8 @@ export default defineNuxtConfig({
         theme: {
             colors: ["primary", "secondary", "success", "info", "warning", "error", "neutral"],
         },
+    },
+    build: {
+        transpile: ["echarts", "vue-echarts", "resize-detector"],
     },
 });

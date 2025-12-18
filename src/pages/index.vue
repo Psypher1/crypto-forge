@@ -39,9 +39,9 @@ onMounted(async () => {
     await fetchCoins();
 });
 
-// watch([limit, sortBy], async () => {
-//     await fetchCoins();
-// });
+watch([limit, sortBy], async () => {
+    await fetchCoins();
+});
 
 // // Watch for changes and refetch
 // watch([limit, sortBy], async ([newLimit, newSort], [oldLimit, oldSort]) => {
@@ -84,8 +84,9 @@ onMounted(async () => {
         </div>
     </div>
 
-    <div v-if="loading">
-        <p>Loading...</p>
+    <div v-if="loading" class="flex items-center justify-center py-20">
+        <UIcon name="i-heroicons-arrow-path" class="h-8 w-8 animate-spin text-primary" />
+        <span class="ml-3 text-lg">Loading coinss...</span>
     </div>
 
     <div v-else class="mt-4 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

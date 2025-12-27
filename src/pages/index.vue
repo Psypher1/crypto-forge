@@ -56,7 +56,7 @@ watch([limit, sortBy], async () => {
 </script>
 
 <template>
-    <div class="flex items-center gap-4">
+    <div class="flex flex-wrap items-center gap-4">
         <UInput
             v-model="search"
             size="xl"

@@ -56,17 +56,19 @@ watch([limit, sortBy], async () => {
 </script>
 
 <template>
-    <div class="flex flex-wrap items-center gap-4">
+    <section class="flex flex-wrap items-center gap-4">
         <UInput
             v-model="search"
             size="xl"
             class="flex-1"
             placeholder="Find coins by name or symbol"
         />
+        <!-- limit -->
         <div>
             <label> Show </label>
             <USelectMenu v-model="limit" :items="limitOptions" class="w-32"> </USelectMenu>
         </div>
+        <!-- sort -->
         <div>
             <label> Sort: </label>
             <USelectMenu v-model="sortBy" :items="sortOptions" size="xl" class="w-64">
@@ -77,19 +79,16 @@ watch([limit, sortBy], async () => {
                 <template #item="{ item }">
                     {{ sortLabels[item] }}
                 </template>
-                <!-- <template #item="{ value }">
-                    {{ sortLabels[value] }}
-                </template> -->
             </USelectMenu>
         </div>
-    </div>
+    </section>
 
     <div v-if="loading" class="flex items-center justify-center py-20">
         <UIcon name="i-heroicons-arrow-path" class="h-8 w-8 animate-spin text-primary" />
-        <span class="ml-3 text-lg">Loading coinss...</span>
+        <span class="ml-3 text-lg">Loading coins...</span>
     </div>
 
-    <div v-else class="mt-4 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <section v-else class="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <NuxtLink v-for="coin in filteredCoins" :key="coin.id" :to="`/coin/${coin.id}`">
             <UCard>
                 <!-- Header -->
@@ -127,5 +126,5 @@ watch([limit, sortBy], async () => {
                 </div>
             </UCard>
         </NuxtLink>
-    </div>
+    </section>
 </template>

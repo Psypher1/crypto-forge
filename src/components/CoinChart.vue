@@ -1,29 +1,3 @@
-<template>
-    <div class="w-full">
-        <div v-if="loading" class="flex items-center justify-center py-12">
-            <UIcon name="i-heroicons-arrow-path" class="h-6 w-6 animate-spin text-primary" />
-            <span class="ml-3">Loading chart...</span>
-        </div>
-
-        <UAlert
-            v-if="error"
-            icon="i-lucide-triangle-alert"
-            color="red"
-            variant="soft"
-            :description="error"
-            class="mb-4"
-        />
-
-        <VChart
-            v-if="!loading && !error && chartOption"
-            :option="chartOption"
-            :autoresize="true"
-            class="w-full"
-            style="height: 400px"
-        />
-    </div>
-</template>
-
 <script setup>
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
@@ -232,3 +206,28 @@ watch(
     },
 );
 </script>
+<template>
+    <div class="w-full">
+        <div v-if="loading" class="flex items-center justify-center py-12">
+            <UIcon name="i-heroicons-arrow-path" class="h-6 w-6 animate-spin text-primary" />
+            <span class="ml-3">Loading chart...</span>
+        </div>
+
+        <UAlert
+            v-if="error"
+            icon="i-lucide-triangle-alert"
+            color="red"
+            variant="soft"
+            :description="error"
+            class="mb-4"
+        />
+
+        <VChart
+            v-if="!loading && !error && chartOption"
+            :option="chartOption"
+            :autoresize="true"
+            class="w-full"
+            style="height: 400px"
+        />
+    </div>
+</template>
